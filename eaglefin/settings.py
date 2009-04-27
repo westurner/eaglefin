@@ -74,6 +74,7 @@ INSTALLED_APPS = (
     'myapp',
     'registration',
     'mediautils',
+    'efs',
 )
 
 # List apps which should be left out from app settings and urlsauto loading

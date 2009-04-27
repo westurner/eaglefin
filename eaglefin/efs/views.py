@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import random
+
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext as _
@@ -17,4 +19,9 @@ def quote_request_create(request):
                                    kwargs=dict(key='%(key)s')))
 
 def quote_request_detail(request, key):
-    return object_detail(request, QuoteRequest.all(), key)
+    cost = "$%d"  % random.gauss(400, 200)
+    return object_detail(request, QuoteRequest.all(), key,
+        extra_context={'cost':cost})
+    
+    
+

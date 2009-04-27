@@ -1,21 +1,33 @@
 {% extends 'base.html' %}
 {% block title %}Welcome!{% endblock %}
-
+{% block devel %}
+{% endblock devel %}
 {% block content %}
-<h1>Welcome to the app-engine-patch sample project</h1>
-<p>This is your automatically scaling site!</p>
+<div class="yui-g">
+<div class="yui-u first">
+<h1>Welcome</h1>
+<p>Welcome to Eagle Financial Services</p>
 
-<p>
-Let's have a look at our generic views
-<a href="{% url myapp.views.list_people %}">sample</a>
-(a simple person list with file uploads).
-</p>
+<p>Get your free quotes.</p>
 
-<p>
-You can also visit Django's <a href="/admin/">admin interface</a>. If needed, you can <a href="{% url myapp.views.create_admin_user %}">generate an admin user</a> with the username and password "admin".
-</p>
+<h2>Rocking Financial Services</h2>
+<ul class="services">
+<p>In <b>your</b> real world</li>
+<p><a href="/support">24 Hours a Day, 7 Days a Week, 365 Days a Year</a></p>
+</ul>
 
-<p>
-This sample project includes a port of <a href="http://www.bitbucket.org/ubernostrum/django-registration/wiki/Home">django-registration</a>. We maintain a list of <a href="http://code.google.com/p/app-engine-patch/wiki/OpenSourceProjects">open-source projects</a> to get you started faster with App Engine development.
-</p>
+<h2>Our Excellent Copy</h2>
+<p>Lorem ipsum's got nothing on us. <b>Buy Insurance</b></p>
+
+<h2>Awesome, Professional Service</h2>
+<p>For your <b>peace of mind</b></p>
+
+</div>
+
+<div class="yui-u">
+<h2>Request A Free Quote</h2>
+{% include "_quoterequest-form-static.html" %}
+
+</div>
+</div>
 {% endblock %}

@@ -14,9 +14,15 @@ urlpatterns = auth_patterns + patterns('',
 
     (r'^$', 'django.views.generic.simple.direct_to_template',
         {'template': 'main.html'}),
+    (r'^support/$', 'django.views.generic.simple.direct_to_template',
+        {'template': 'support.html'}),
     # Override the default registration form
     url(r'^account/register/$', 'registration.views.register',
         kwargs={'form_class': UserRegistrationForm},
         name='registration_register'),
     (r'efs/', include('efs.urls')),
+) + patterns('efs.views',
+    (r'^quote/$', 'quote_request_create'),
+    (r'^quote/(?P<key>.+)$', 'quote_request_detail'),
+
 ) + urlpatterns

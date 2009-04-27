@@ -1,17 +1,51 @@
 {% extends 'base.html' %}
 {% block title %}Your Insurance Quote{% endblock %}
-
+{% block devel %}
+#quote_detail {  }
+#quote_detail th { width: 10em; text-align: right; padding-right: 8px; }
+#your_quote { margin: 2em auto; padding: 1em; border: 1px solid #ccc; color: #5B80B2; }
+#your_quote h3, #your_quote h2 { color: #5B80B2; font-weight: bold; display: block; }
+#your_quote h3 span { font-size: 3.0em; }
+a.button { padding: 10px; }
+div.buttons { height: 3em; display: block;}
+div.value_row { height: 5em; }
+{% endblock devel %}
 {% block content %}
 <h1>Your Insurance Quote</h1>
-<a href="{% url myapp.views.list_people %}">Back to listing</a>
+<div class="yui-g">
+<div class="yui-u first">
+<div id="your_quote">
+<div class="value_row">
+<h3 style="display: inline">{{ object.payment_mode }} Premium: <span>{{ cost }}</span></h3>
+<a class="button" href="/account/create/">Apply</a>
+</div>
 
-<form action="" method="post" enctype="multipart/form-data">
-  <table>
-    {{ object }}
-    <tr><td colspan="2">
-      <input type="submit"
-        value="{% if object %}Save{% else %}Submit{% endif %}" />
-    </td></tr>
-  </table>
-</form>
+
+</div>
+
+<div class="buttons" style="float: clear">
+<a class="button" href="{% url efs.views.quote_request_create %}">Request Another Free Quote</a>
+
+</div>
+</div>
+
+<div class="yui-u">
+<table id="quote_detail">
+<tbody>
+<tr><th>State</th><td>{{ object.state }}</td></tr>
+<tr><th>Gender</th><td>{{ object.gender }}</td></tr>
+<tr><th>Birthdate</th><td>{{ object.dob }}</td></tr>
+<tr><th>Height</th><td>{{ object.height }}</td></tr>
+<tr><th>Weight</th><td>{{ object.weight }}</td></tr>
+<tr><th>Tobacco</th><td>{{ object.tobacco }}</td></tr>
+<tr><th>Rating</th><td>{{ object.rating }}</td></tr>
+<tr><th>Coverage</th><td>{{ object.coverage }}</td></tr>
+<tr><th>Term</th><td>{{ object.term }} years</td></tr>
+<tr><th>Payment Mode</th><td>{{ object.payment_mode }}</td></tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
 {% endblock %}

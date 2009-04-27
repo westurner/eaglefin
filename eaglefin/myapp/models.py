@@ -7,6 +7,15 @@ class Person(db.Model):
     """Basic user profile with personal details."""
     first_name = db.StringProperty(required=True)
     last_name = db.StringProperty(required=True)
+    
+    address_line_1 = db.StringProperty(required=True)
+    address_line_2 = db.StringProperty(required=True)
+    city = db.StringProperty(required=True)
+    state = db.StringProperty(required=True)
+    zipcode = db.StringProperty(required=True)
+    
+    phone = db.StringProperty(required=True)
+    ssn = db.StringProperty(required=True, verbose_name="Social Security Number")
 
     def __unicode__(self):
         return '%s %s' % (self.first_name, self.last_name)

@@ -7,7 +7,7 @@ from ragendja.settings_pre import *
 MEDIA_VERSION = 1
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '1234567890'
+SECRET_KEY = '12345*_*67890'
 
 #ENABLE_PROFILER = True
 #ONLY_FORCED_PROFILE = True
@@ -15,7 +15,7 @@ SECRET_KEY = '1234567890'
 #SORT_PROFILE_RESULTS_BY = 'cumulative' # default is 'time'
 #PROFILE_PATTERN = 'ext.db..+\((?:get|get_by_key_name|fetch|count|put)\)'
 
-# Enable I18N and set default language to 'en'
+# Disable I18N
 USE_I18N = True
 LANGUAGE_CODE = 'en'
 
@@ -50,6 +50,7 @@ MIDDLEWARE_CLASSES = (
 # Google authentication
 #AUTH_USER_MODULE = 'ragendja.auth.google_models'
 #AUTH_ADMIN_MODULE = 'ragendja.auth.google_admin'
+
 # Hybrid Django/Google authentication
 #AUTH_USER_MODULE = 'ragendja.auth.hybrid_models'
 
@@ -75,6 +76,7 @@ INSTALLED_APPS = (
     'registration',
     'mediautils',
     'efs',
+    'utils'
 )
 
 # List apps which should be left out from app settings and urlsauto loading
@@ -85,12 +87,39 @@ IGNORE_APP_SETTINGS = IGNORE_APP_URLSAUTO = (
     # 'yetanotherapp',
 )
 
+
+
+# Combine media files
+COMBINE_MEDIA = {
+    # Create a combined JS file which is called "combined-en.js" for English,
+    # "combined-de.js" for German, and so on
+    'combined-%(LANGUAGE_CODE)s.js': (
+        # Integrate bla.js from "myapp/media" folder
+        # You don't write "media" because that folder is used automatically
+        #'myapp/bla.js',
+        # Integrate morecode.js from "media" under project root folder
+        'global/js/jquery-1.2.6.js',
+        'global/js/jquery.form.js',
+        
+    ),
+    # Create a combined CSS file which is called "combined-ltr.css" for
+    # left-to-right text direction
+    'combined-%(LANGUAGE_DIR)s.css': (
+        #'myapp/style.css',
+        # Load layout for the correct text direction
+        'global/css/reset.css',
+        'global/css/grids.css',
+        'global/css/styles.css',
+    ),
+}
+
+
 # Remote access to production server (e.g., via manage.py shell --remote)
 DATABASE_OPTIONS = {
     # Override remoteapi handler's path (default: '/remote_api').
     # This is a good idea, so you make it not too easy for hackers. ;)
     # Don't forget to also update your app.yaml!
-    #'remote_url': '/remote-secret-url',
+    'remote_url': '/https_remote_api',
 
     # !!!Normally, the following settings should not be used!!!
 

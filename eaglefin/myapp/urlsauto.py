@@ -2,5 +2,5 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
-    (r'^person/', include('myapp.urls')),
+    (r'^account/', include('myapp.urls')),
 )

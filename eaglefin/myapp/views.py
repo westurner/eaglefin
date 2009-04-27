@@ -12,17 +12,21 @@ from myapp.models import Contract, File, Person
 from ragendja.dbutils import get_object_or_404
 from ragendja.template import render_to_response
 
+from django.contrib.auth.decorators import login_required
+
 def list_people(request):
     return object_list(request, Person.all(), paginate_by=10)
 
 def show_person(request, key):
     return object_detail(request, Person.all(), key)
 
+@login_required
 def add_person(request):
     return create_object(request, form_class=PersonForm,
         post_save_redirect=reverse('myapp.views.show_person',
                                    kwargs=dict(key='%(key)s')))
 
+@login_required
 def edit_person(request, key):
     return update_object(request, object_id=key, form_class=PersonForm)
 

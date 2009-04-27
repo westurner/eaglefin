@@ -1,17 +1,25 @@
 {% extends "admin/base.html" %}
 {% load i18n %}
 
-{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
-
+{% block title %}{{ title }} | {% trans 'Eagle Financial Services' %}{% endblock %}
 {% block userlinks %}
-<a href="/">Back to sample project</a> /
+<a href="/">Back to site</a> /
 {% url django-admindocs-docroot as docsroot %}{% if docsroot %}<a href="{{ docsroot }}">{% trans 'Documentation' %}</a> / {% endif %}
 <a href="{{ root_path }}password_change/">{% trans 'Change password' %}</a> /
 <a href="{% url django.contrib.auth.views.logout %}">{% trans 'Log out' %}</a>
 {% endblock %}
-
+{% block extrahead %}
+<style type="text/css">
+#header { background: #717478; }
+#header #branding h1 { color: #dfdfdf; }
+.module h2, .module caption, .inline-group h2 {
+background:#EEEEEE url(../img/admin/nav-bg.gif) repeat-x scroll left bottom; }
+a.section:link, a.section:visited {
+color:#676767;
+</style>
+{% endblock extrahead %}
 {% block branding %}
-<h1 id="site-name">{% trans 'Django administration' %}</h1>
+<h1 id="site-name">{% trans 'Eagle Financial Services' %}</h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'layouts/layout_base.html' %}
+{% load media %}{% load adminmedia %}
+{% block head %}
+  <head>
+    {% block meta %}
+    <meta http-equiv="content-type" content="{% block meta.content-type %}text/html;charset=UTF-8{% endblock meta.content-type %}" />
+    <meta name="description" content="{% block meta.description %}{% endblock meta.description %}" />
+    <meta name="keywords" content="{% block meta.keywords %}{% endblock meta.keywords %}" />
+    {% endblock meta %}
+
+    <title>{% block title %}{% endblock title %} - Eagle Financial Services</title>
+
+    {% block css %}
+    {% block css.shared %}
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}combined-{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}.css" />
+<script type="text/javascript" src="{{ MEDIA_URL }}combined-{{ LANGUAGE_CODE }}.js"></script>
+<![if gte IE 6]><!-- Block all styles from IE5 and lower -->
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/base.css{% endblock %}" />
+<link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />
+{% block extrastyle %}{% endblock %}
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% load adminmedia %}{% admin_media_prefix %}css/ie.css{% endblock %}" /><![endif]-->
+{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% admin_media_prefix %}css/rtl.css{% endblock %}" />{% endif %}
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+
+<![endif]>
+
+	<style type="text/css">{% block devel %}{% endblock devel %}</style>
+    {% endblock css.shared %}
+    {% block css.custom %}{% endblock css.custom %}
+    {% endblock css%}
+
+    {% block js %}
+    {% block js.shared %}{% endblock js.shared %}
+    {% block js.custom %}{% endblock js.custom %}
+    {% endblock js%}
+  </head>
+{% endblock head %}
+
+{% block header %}
+<!-- BEGIN header -->
+<div id="header">
+
+{% block nav-user %}
+<div id="nav-user" style="text-align:right;">
+{% if user.is_authenticated %}welcome, {{ user.username }} <a href="/account/logout">logout</a>
+{% else %}
+<a href="/account/register/" title="Setup an account">register</a> | 
+<a href="/account/login">login</a>
+{% endif %}
+{% if user.is_authenticated %}
+<!-- <a class="n_profile" href="{# url profiles.views.profile_detail user.username #}" title="Profile">My Account</a> -->
+{% if user.is_staff %} | 
+<a class="n_admin" href="/admin/" title="Admin">Admin</a>
+{% endif %}
+{% endif %}
+</div>
+
+
+{% endblock nav-user %}
+
+{% block header_content %}{% include 'shared/header.html' %}{% endblock header_content %}
+
+</div>
+
+<!-- END header -->
+{% endblock header %}
+
+
+
+# This file should contain any override to the layout_base.html

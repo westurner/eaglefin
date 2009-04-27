@@ -3,3 +3,4 @@ syntax:glob
 *.swp
 google_appengine
 _generated_media
+.dynamic_media

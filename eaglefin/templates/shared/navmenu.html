@@ -1,0 +1,40 @@
+<div id="nav-main">
+<ul>
+<li><a class="n_home" href="/" title="Home">Home</a></li>
+<li><a class="n_about" href="/about" title="About">About Us</a></li>
+<li><a class="n_quote" href="/quote" title="Request a quote">Life Insurance</a></li>
+<li><a class="n_about" href="/support" title="Support">Support</a></li>
+{% if user.is_staff %}
+<li><a class="n_admin" href="/admin/" title="Admin">Admin</a></li>
+
+
+{% endif %}
+</ul>
+
+<div class="feature">
+<a href="Free Insurance Quote" >Free Quote</a>
+</div>
+
+<div class="login" style="margin-top:2em">
+{% if not user.is_authenticated %}
+
+<h3>Login</h3>
+<form method="post" action="/account/login/">
+
+<ul>
+
+<li><label for="id_username">Username:<input style="width:100px" type="text" maxlength="10" name="username" id="id_username"/></li>
+
+<li><label for="id_password">Password:</label><input style="width:100px" type="password" id="id_password" name="password"/></li>
+<li><input style="width:108px" class="button" type="submit" value="Login"/></li>
+</ul>
+</form>
+{% else %}
+<a href="/account/logout">Logout</a>
+
+{% endif %}
+</div>
+
+</div>
+
+

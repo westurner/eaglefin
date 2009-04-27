@@ -9,6 +9,8 @@ from ragendja.forms import FormWithSets, FormSetField
 from registration.forms import RegistrationForm, RegistrationFormUniqueEmail
 from registration.models import RegistrationProfile
 
+from django.contrib.localflavor.us.forms import *
+
 class UserRegistrationForm(forms.ModelForm):
     username = forms.RegexField(regex=r'^\w+$', max_length=30,
         label=_(u'Username'))
@@ -95,10 +97,16 @@ class FileForm(forms.ModelForm):
         model = File
 
 class PersonForm(forms.ModelForm):
-    files = FormSetField(File, form=FileForm, exclude='content_type')
-    employers = FormSetField(Contract, fk_name='employee')
-    employees = FormSetField(Contract, fk_name='employer')
+    #files = FormSetField(File, form=FileForm, exclude='content_type')
+    #employers = FormSetField(Contract, fk_name='employee')
+    #employees = FormSetField(Contract, fk_name='employer')
+
+    state = USStateField(widget=USStateSelect)
+    zipcode = USZipCodeField(label="Zip Code")
+    ssn = USSocialSecurityNumberField(label="Social Security Number")
+    phone = USPhoneNumberField(label="Evening Phone")
 
     class Meta:
         model = Person
-PersonForm = FormWithSets(PersonForm)
+
+#PersonForm = FormWithSets(PersonForm)

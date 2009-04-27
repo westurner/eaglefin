@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Welcome!{% endblock %}
+{% block devel %}
+div.chatbox, div.textentrybox { width: 42em; }
+div.chatbox { border: 1px solid #ccc; padding: 1em; background: #efefef; }
+div.textentrybox { margin: 1em 0; padding: 0.5em 1em; border: 1px solid #ccc; }
+{% endblock devel %}
+{% block content %}
+<h1>Eagle Financial Web Chat</h1>
+<div class="yui-g">
+<div class="chatbox">
+<p><b>Eagle Financial Support:</b> How can I help you today, Mrs.?</p>
+<p><b>Long Jacket:</b> I would like to borrow a pen.</p>
+<p><b>Eagle Financial Support:</b> Did we, by chance, meet accidentally?</p>
+</div>
+<div class="textentrybox">
+<p>Also, <b><blink>|</blink><b><span style="margin-left: 34em; text-align: right"><a style="text-align:right" class="button" href="#send">Send</a></span></p>
+</div>
+
+</div>
+
+{% endblock %}

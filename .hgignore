@@ -2,3 +2,4 @@ syntax:glob
 *.pyc
 *.swp
 google_appengine
+_generated_media
